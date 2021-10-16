@@ -6,9 +6,9 @@ import {TaskItem} from '../tasks/TaskItem';
 import {TaskCreate} from '../tasks/TaskCreate';
 
 const taskListExample = [
-  {id: 0, name: 'task1', completed: false},
-  {id: 1, name: 'task2', completed: true},
-  {id: 2, name: 'task3', completed: true},
+  {name: 'task0', completed: false},
+  {name: 'task1', completed: true},
+  {name: 'task2', completed: true},
 ];
 
 function App() {
@@ -16,32 +16,69 @@ function App() {
   // States
   const [taskList, setTaskList] = React.useState(taskListExample);
   const [searchValue, setSearchValue] = React.useState('');
+  const [taskSearchList, setTaskSearchList] = React.useState(taskList);
+
 
   // Events
-  const onChangeSearchValue = ({target}) => {
-    setSearchValue(target.value);    
-  }
+  const onChangeSearchValue = ({target}) => {    
+    // Set Value
+    const {value} = target;   
+    setSearchValue(value);
 
+    // Set & Filter
+    setTaskSearchList(taskList.filter(task => (
+      task.name.toLocaleLowerCase().includes(value)
+    )));
+  }
+  
+  
+  // Hooks CRUD
+
+  // Create
   const onClickTaskCreate = () => {
-    setTaskList([...taskList, {
-      id: taskList.length,
+    setTaskList([...taskList, {     
       name: 'prueba',
       completed: false,
     }]) 
   }
-  
-  const onChangeTaskItem = ({target}) => {
-    alert("onChangeTaskItem");
+  // Toogle Completed
+  const onChangeCompleted = ({target}) => {
+    // To Update
+    const {id, checked} = target;   
+    // Copy
+    const _taskList = [...taskList];
+    // Update
+    _taskList[id].completed = checked;
+    // Set  
+    setTaskList(_taskList);    
   }
-  
 
-  
+  // Delete
+  const onClickDelete = ({target}) => {
+    // To Delete
+    const {id} = target; 
+    // Copy
+    const _taskList = [...taskList];
+    // Delete
+    _taskList.splice(id, 1);
+    // Set
+    setTaskList(_taskList);
+
+    /* Alternative
+    setTaskList(prev=>(
+      prev.filter((item,index)=>(index !== Number(target.id)))
+    ));*/
+  }
+
+  // Edit
+  const onClickEdit = (params) => {
+    alert("onClickEdit");
+  }
 
   // Counter
-  //const taskTotal = taskList.length;
-  //const taskCompleted = taskList.filter(taskItem => taskItem.completed).length;
-  const taskTotal = 0;
-  const taskCompleted = 0;
+  const taskCompleted = taskList.filter(taskItem => taskItem.completed).length;
+  const taskTotal = taskList.length; 
+      
   
   return (
     <>
@@ -52,13 +89,15 @@ function App() {
 
       <TaskContainer >
         {
-          taskList.map((taskItem)=>(            
+          taskSearchList.map((taskItem,index)=>(            
              <TaskItem 
-                key={taskItem.id} 
-                id={taskItem.id} 
+                key={index} 
+                id={index} 
                 name={taskItem.name} 
                 completed={taskItem.completed} 
-                onChange={onChangeTaskItem}
+                onChangeCompleted={onChangeCompleted}
+                onClickDelete={onClickDelete}
+                onClickEdit={onClickEdit}
               />
           ))
         }
