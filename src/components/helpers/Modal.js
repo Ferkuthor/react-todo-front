@@ -1,17 +1,11 @@
-import React from 'react'
-import {TaskContext} from '../../contexts/AppProvider'
 
-export const Modal = () => {
+import ReactDOM from 'react-dom'
 
-    const {onClickTaskAdd, onClickTaskCancel} = React.useContext(TaskContext);
+export const Modal = (props) => {
 
-    return (
-        <div>
-            <input type="text" placeholder="Insertar tarea"/>
-            <div>
-                <button onClick={onClickTaskAdd} >Añadir</button>
-                <button onClick={onClickTaskCancel} >Cancelar</button>
-            </div>
-        </div>
-    )
+    return ReactDOM.createPortal(       
+        props.children           
+        ,
+        document.getElementById('modal')
+    );   
 }

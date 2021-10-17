@@ -7,7 +7,7 @@ export const TaskCounter = (props) => {
  
     return (
         <div>
-            <p>Has completado {taskCompleted} de {taskTotal} tareas</p>
+            <h3>Has completado {taskCompleted} de {taskTotal} tareas</h3>
         </div>
     )
 }
