@@ -1,14 +1,25 @@
 import React from 'react'
-import {TaskContext} from '../../contexts/AppProvider'
+import { TaskContext } from '../../contexts/AppProvider'
 
-export const TaskCounter = (props) => {  
+import { Grommet, Notification, Box, Text } from 'grommet';
 
-    const {taskTotal, taskCompleted } = React.useContext(TaskContext);
- 
+export const TaskCounter = (props) => {
+
+    const { taskTotal, taskCompleted } = React.useContext(TaskContext);
+
     return (
-        <div>
-            <h3>Has completado {taskCompleted} de {taskTotal} tareas</h3>
-        </div>
+        <Grommet>
+            {/* <h3></h3> */}
+            <Box pad="large" justify="center" gap="large">
+                <Box gap="xsmall">                    
+                    <Notification
+                        title={taskCompleted<taskTotal ? `Te faltan ${taskTotal - taskCompleted} tareas` : `Felicitaciones! terminaste`}                                        
+                        status={taskCompleted<taskTotal ? "warning" : "normal" } 
+                        message={`${taskTotal} en total` }                     
+                    />
+                </Box>
+            </Box>
+        </Grommet>
     )
 }
 

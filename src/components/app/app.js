@@ -1,4 +1,5 @@
 import React from 'react';
+import {HeaderBar} from '../helpers/Header'
 import {TaskCounter} from '../tasks/TaskCounter';
 import {TaskSearch} from '../tasks/TaskSearch';
 import {TaskContainer} from '../tasks/TaskContainer';
@@ -10,6 +11,8 @@ function App() {
   return (
    
     <AppProvider>
+
+      <HeaderBar/>
 
       <TaskCounter />      
       <TaskSearch />      
