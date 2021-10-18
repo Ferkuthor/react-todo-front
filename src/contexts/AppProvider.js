@@ -75,9 +75,7 @@ export const AppProvider = (props) => {
     }
 
     // Edit
-    const onClickEdit = ({target}) => {
-        // Id to update
-        const {id} = target;
+    const onClickEdit = (id) => {
         // Get task
         const taskToEdit = taskList.filter(task => (
             Number(task.id) === Number(id)
@@ -105,28 +103,16 @@ export const AppProvider = (props) => {
     }
 
     // Delete
-    const onClickDelete = ({target}) => {
-        // To Delete
-        const {id} = target; 
-        // Copy
-        const _taskList = [...taskList];
-        // Delete
-        _taskList.splice(id, 1);
-        // Set
-        setTaskList(_taskList);  
-       
-
-        /* Alternative
+    const onClickDelete = (id) => { 
+        // Filter
         setTaskList(prev=>(
-        prev.filter((item,index)=>(index !== Number(target.id)))
-        ));*/
+            prev.filter((item,index)=>(item.id !== id))
+        ));
     }
-
-
 
     React.useEffect(() => {
         setSearchValue('');
-        setTaskSearchList(taskList);       
+        setTaskSearchList(taskList);        
     },[taskList]);
     
 

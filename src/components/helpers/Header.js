@@ -1,14 +1,21 @@
 import React from 'react';
 
-import { Anchor, Nav, Grommet, Header, Heading } from 'grommet'; 
+import { Nav, Grommet, Header, Heading, Button } from 'grommet';
 
-export const HeaderBar = () => (
-    <Grommet>
-        <Header background="brand" pad="medium">
-            <Heading margin="none">Mis Tareas</Heading>
-            <Nav direction="row">
-                <Anchor label="Agregar" />               
-            </Nav>
-        </Header>
-    </Grommet>
-);
+import { TaskContext } from '../../contexts/AppProvider'
+
+
+
+export const HeaderBar = () => {
+    const { onClickTaskCreate } = React.useContext(TaskContext);
+    return (
+        <Grommet>
+            <Header background="brand" pad="medium">
+                <Heading margin="none">Mis Tareas</Heading>
+                <Nav direction="row">                   
+                    <Button primary label="Nueva" onClick={onClickTaskCreate}/>
+                </Nav>
+            </Header>
+        </Grommet>
+    )
+}

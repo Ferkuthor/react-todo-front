@@ -1,17 +1,23 @@
 import React from 'react'
+import { Grommet, Box, CheckBox, Button } from 'grommet';
+import { Edit, Trash } from 'grommet-icons';
 
 export const TaskItem = (props) => {
     return (
-        <li>
-            <input type="checkbox" 
-                id={props.id}                 
-                checked={props.completed} 
-                onChange={props.onChangeCompleted}
-            />
-            <label> {props.id} {props.name}</label> 
-            <button id={props.id} onClick={props.onClickEdit} >Edit</button>
-            <button id={props.id} onClick={props.onClickDelete}>Delete</button> 
-        </li>
-        
+
+        <Grommet>
+            <Box  direction="row" >                
+                <CheckBox
+                    id={props.id.toString()}
+                    checked={props.completed}
+                    onChange={props.onChangeCompleted}
+                    label={props.name}
+                />
+               
+                <Button icon={<Edit />} hoverIndicator onClick={ () => props.onClickEdit(props.id)} />
+                <Button icon={<Trash />} hoverIndicator onClick={() => props.onClickDelete(props.id)} />   
+                                       
+            </Box>
+        </Grommet>
     )
 }
