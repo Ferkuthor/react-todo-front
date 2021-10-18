@@ -14,8 +14,9 @@ function App() {
 
       <HeaderBar/>
 
+      <TaskSearch /> 
       <TaskCounter />      
-      <TaskSearch />      
+
       <TaskContainer />
       <TaskForm />  
 
