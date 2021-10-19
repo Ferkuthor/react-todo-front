@@ -38,13 +38,14 @@ export const AppProvider = (props) => {
     }
     
     const onClickTaskAdd = () => {
-         setTaskList([...taskList, { 
-            id: taskList.length,    
-            name: taskValue,
-            completed: false,
-        }])
-
-        setTaskValue('');
+        if(taskValue){
+            setTaskList([...taskList, { 
+                id: taskList.length,    
+                name: taskValue,
+                completed: false,
+            }])
+            setTaskValue('');            
+        }
         setModal({isOpen: false});
     }   
 

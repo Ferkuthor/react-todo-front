@@ -7,18 +7,20 @@ export const TaskCounter = (props) => {
 
     const { taskTotal, taskCompleted } = React.useContext(TaskContext);
 
-    return (
-        <Grommet>            
-            <Box pad="xsmall" justify="center" gap="large" align="center" >
-                <Box gap="xsmall">                    
-                    <Notification
-                        title={taskCompleted<taskTotal ? `Te faltan ${taskTotal - taskCompleted} tareas` : `Felicitaciones! terminaste`}                                        
-                        status={taskCompleted<taskTotal ? "warning" : "normal" } 
-                        message={`${taskTotal} en total` }                     
-                    />
+    return (       
+            <Grommet>  
+                 {(taskTotal > 0) &&           
+                <Box pad="xsmall" justify="center" gap="large" align="center" >
+                    <Box gap="xsmall">                    
+                        <Notification
+                            title={taskCompleted<taskTotal ? `Te faltan ${taskTotal - taskCompleted} tareas` : `Felicitaciones! terminaste`}                                        
+                            status={taskCompleted<taskTotal ? "warning" : "normal" } 
+                            message={`${taskTotal} en total` }                     
+                        />
+                    </Box>
                 </Box>
-            </Box>
-        </Grommet>
+                }
+            </Grommet>
     )
 }
 

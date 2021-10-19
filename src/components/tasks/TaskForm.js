@@ -1,40 +1,79 @@
 import React from 'react'
-import {Modal} from '../helpers/Modal'
-import {TaskContext} from '../../contexts/AppProvider'
+import { Modal } from '../helpers/Modal'
+import { Box, Form, FormField, Grommet, TextInput, Button } from 'grommet';
+
+import { TaskContext } from '../../contexts/AppProvider'
 
 export const TaskForm = (props) => {
 
-    const {onClickTaskAdd, onClickTaskUpdate, onClickTaskCancel, taskValue, onChangeTaskValue, modal} = React.useContext(TaskContext);
-    
-    return (  
-        <>        
-        { modal.isOpen &&       
-            <Modal> 
-                { modal.add &&
-                    <>
-                        <h2> Agregar </h2>
-                        <input type="text" placeholder="Insertar tarea" value={taskValue} onChange={onChangeTaskValue}  />
-                        <div>
-                            <button onClick={onClickTaskAdd} >Añadir</button>
-                            <button onClick={onClickTaskCancel} >Cancelar</button>
-                        </div> 
-                    </>
-                }   
+    const { onClickTaskAdd, onClickTaskUpdate, onClickTaskCancel, taskValue, onChangeTaskValue, modal } = React.useContext(TaskContext);
 
-                { modal.edit &&
-                    <>
-                        <h2> Editar </h2>
-                        <input type="text" value={taskValue} onChange={onChangeTaskValue}  />
-                        <div>
-                            <button onClick={onClickTaskUpdate} >Actualizar</button>
-                            <button onClick={onClickTaskCancel} >Cancelar</button>
-                        </div> 
-                    </>
-                }
-                    
-            </Modal>
-        }
+    return (
+        <>
+            {modal.isOpen &&
+                <Modal>
+                    {modal.add &&
+                        <Grommet>
+                            <Box align="center" pad="large">
+                                <Form>
+                                    <Box border gap="medium" pad="large" width="medium">
+                                        <FormField htmlFor="enabled-id" name="enabled" label="Nueva Tarea">
+                                            <TextInput
+                                                placeholder="Insertar..."
+                                                value={taskValue}
+                                                onChange={onChangeTaskValue}
+                                            />
+                                        </FormField>
+                                        <Box direction="row" justify="between">
+                                            <Button
+                                                primary
+                                                label="Añadir"
+                                                onClick={onClickTaskAdd}
+                                            />
+                                            <Button
+                                                secondary
+                                                label="Cancelar"
+                                                onClick={onClickTaskCancel}
+                                            />
+                                        </Box>
+                                    </Box>
+                                </Form>
+                            </Box>
+                        </Grommet>
+                    }
+
+                    {modal.edit &&
+                        <Grommet>
+                            <Box align="center" pad="large">
+                                <Form>
+                                    <Box border gap="medium" pad="large" width="medium">
+                                        <FormField htmlFor="enabled-id" name="enabled" label="Nueva Tarea">
+                                            <TextInput                                               
+                                                value={taskValue}
+                                                onChange={onChangeTaskValue}
+                                            />
+                                        </FormField>
+                                        <Box direction="row" justify="between">
+                                            <Button
+                                                primary
+                                                label="Actualizar"
+                                                onClick={onClickTaskUpdate}
+                                            />
+                                            <Button
+                                                secondary
+                                                label="Cancelar"
+                                                onClick={onClickTaskCancel}
+                                            />
+                                        </Box>
+                                    </Box>
+                                </Form>
+                            </Box>
+                        </Grommet>
+                    }
+
+                </Modal>
+            }
         </>
-       
+
     )
 }
