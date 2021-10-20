@@ -4,21 +4,26 @@ import {TaskCounter} from '../tasks/TaskCounter';
 import {TaskSearch} from '../tasks/TaskSearch';
 import {TaskContainer} from '../tasks/TaskContainer';
 import {TaskForm} from '../tasks/TaskForm';
+import { Box } from 'grommet';
+
 import {AppProvider} from '../../contexts/AppProvider'
 
 function App() {
-  
+
   return (
    
     <AppProvider>
 
       <HeaderBar/>
 
-      <TaskSearch /> 
-      <TaskCounter />      
+      <Box border={{ color: 'brand', size: 'large' }} pad="xlarge">  
+     
+        <TaskSearch /> 
+        <TaskCounter />      
 
-      <TaskContainer />
-      <TaskForm />  
+        <TaskContainer />
+        <TaskForm /> 
+      </Box> 
 
     </AppProvider>   
   );

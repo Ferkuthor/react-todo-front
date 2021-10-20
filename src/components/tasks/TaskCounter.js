@@ -13,8 +13,11 @@ export const TaskCounter = (props) => {
                 <Box pad="xsmall" justify="center" gap="large" align="center" >
                     <Box gap="xsmall">                    
                         <Notification
-                            title={taskCompleted<taskTotal ? `Te faltan ${taskTotal - taskCompleted} tareas` : `Felicitaciones! terminaste`}                                        
-                            status={taskCompleted<taskTotal ? "warning" : "normal" } 
+                            title={taskCompleted<taskTotal 
+                                ? `Te faltan ${taskTotal - taskCompleted} tareas` 
+                                : `Terminaste!`}                                        
+                            status={taskCompleted<taskTotal 
+                                ? "warning" : "normal" } 
                             message={`${taskTotal} en total` }                     
                         />
                     </Box>

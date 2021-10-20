@@ -7,14 +7,7 @@ export const Modal = (props) => {
     return ReactDOM.createPortal(
         <Grommet >
             <Layer>
-                <Box
-                    align="center"
-                    justify="center"
-                    gap="small"
-                    direction="row"
-                    alignSelf="center"
-                    pad="large"
-                >
+                <Box>
                     {props.children}
                 </Box>
             </Layer>

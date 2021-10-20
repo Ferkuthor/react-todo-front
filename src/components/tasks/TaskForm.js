@@ -47,7 +47,7 @@ export const TaskForm = (props) => {
                             <Box align="center" pad="large">
                                 <Form>
                                     <Box border gap="medium" pad="large" width="medium">
-                                        <FormField htmlFor="enabled-id" name="enabled" label="Nueva Tarea">
+                                        <FormField htmlFor="enabled-id" name="enabled" label="Editar Tarea">
                                             <TextInput                                               
                                                 value={taskValue}
                                                 onChange={onChangeTaskValue}

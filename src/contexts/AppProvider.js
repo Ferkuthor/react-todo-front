@@ -1,25 +1,30 @@
 import React from 'react'
 
+import {useLocalStorage} from './useLocalStorage'
 
 export const TaskContext = React.createContext();
 
-export const AppProvider = (props) => {
+export const AppProvider = (props) => {   
 
     // Example Data
     const taskListExample = [
-        {id: 0, name: 'task0', completed: false},
-        {id: 1, name: 'task1', completed: true},
-        {id: 2, name: 'task2', completed: true},
+        {id: 0, name: 'Mi primera tarea', completed: false},
       ];
 
+      const {
+        data: taskList,
+        setData: setTaskList,       
+        dataLoad,
+        dataSave,
+    } = useLocalStorage('TASKS_V1', taskListExample);
+
     // States
-    const [taskList, setTaskList] = React.useState(taskListExample);
+    //const [taskList, setTaskList] = React.useState(taskListExample);
     const [searchValue, setSearchValue] = React.useState('');
     const [taskSearchList, setTaskSearchList] = React.useState(taskList);
     const [taskValue, setTaskValue] = React.useState('');
     const [taskEdit, setTaskEdit] = React.useState({id: -1, name: '', completed: false});
-    const [modal, setModal] = React.useState({isOpen: false, edit: false, add: false});
-   
+    const [modal, setModal] = React.useState({isOpen: false, edit: false, add: false});   
 
     // Events
     const onChangeSearchValue = ({target}) => {    
@@ -113,7 +118,7 @@ export const AppProvider = (props) => {
 
     React.useEffect(() => {
         setSearchValue('');
-        setTaskSearchList(taskList);        
+        setTaskSearchList(taskList);  
     },[taskList]);
     
 
