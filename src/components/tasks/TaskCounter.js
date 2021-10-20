@@ -1,16 +1,16 @@
 import React from 'react'
-import { Grommet, Notification, Box, Text } from 'grommet';
+import { Grommet, Notification, Box } from 'grommet';
 
 import { TaskContext } from '../../contexts/AppProvider'
 
 export const TaskCounter = (props) => {
 
     const { taskTotal, taskCompleted } = React.useContext(TaskContext);
-
+    
     return (       
             <Grommet>  
                  {(taskTotal > 0) &&           
-                <Box pad="xsmall" justify="center" gap="large" align="center" >
+                <Box pad="medium" justify="center" gap="large" align="center" >
                     <Box gap="xsmall">                    
                         <Notification
                             title={taskCompleted<taskTotal 

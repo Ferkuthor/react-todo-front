@@ -1,7 +1,6 @@
 import React from 'react'
 import { Search } from 'grommet-icons';
 import { Box, Grommet, TextInput } from 'grommet';
-import { grommet } from 'grommet/themes';
 
 import { TaskContext } from '../../contexts/AppProvider'
 
@@ -11,7 +10,7 @@ export const TaskSearch = (props) => {
 
     return (
         <Grommet>
-            <Box fill align="center" justify="start" pad="large">
+            <Box fill align="center" justify="start" >
                 <Box width="medium" gap="medium">
                     <TextInput
                         icon={<Search />}

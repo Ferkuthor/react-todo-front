@@ -2,8 +2,7 @@ import React from 'react'
 
 export const useLocalStorage = (dataName, initial) => {
 
-    const [data, setData] = React.useState([]);
-    const [error, setError] = React.useState(false);
+    const [data, setData] = React.useState([]);   
     const [loading, setLoading] = React.useState(true);
 
     // On Start
@@ -11,28 +10,31 @@ export const useLocalStorage = (dataName, initial) => {
         dataLoad();     
     },[]);
 
-    React.useEffect(() => {
-        if(data.length>0 ){            
-            dataSave();   
-        }  
+    // OnChange Data
+    React.useEffect(() => {      
+        if(!loading){
+            dataSave();
+        }           
     },[data]);
 
     // LOAD
-    const dataLoad = () => {        
-        setLoading(true);
-         // Load Data        
-         let _getItem = localStorage.getItem(dataName);         
-         if (_getItem) {
-            // Set                       
-            setData(JSON.parse( _getItem));
-            console.log('Load Data');            
-         }else {
-             // First Time
-            localStorage.setItem(dataName, JSON.stringify( initial ));  
-            setData(initial);         
-            console.log('First Time');           
-         }  
-         setLoading(false);   
+    const dataLoad = () => { 
+        setTimeout(() => {            
+             // Load Data        
+             let _getItem = localStorage.getItem(dataName);         
+             if (_getItem) {
+                // Set                       
+                setData(JSON.parse( _getItem));
+                console.log('Load Data');            
+             }else {
+                 // First Time
+                localStorage.setItem(dataName, JSON.stringify( initial ));  
+                setData(initial);         
+                console.log('First Time');  
+             }  
+             setLoading(false);            
+        },1000);
+        
     }
 
     // SAVE
@@ -44,7 +46,6 @@ export const useLocalStorage = (dataName, initial) => {
     return {
         data,
         setData,
-        dataLoad,
-        dataSave,
+        loading,
     };
 }

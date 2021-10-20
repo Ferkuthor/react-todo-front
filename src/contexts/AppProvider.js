@@ -13,9 +13,8 @@ export const AppProvider = (props) => {
 
       const {
         data: taskList,
-        setData: setTaskList,       
-        dataLoad,
-        dataSave,
+        setData: setTaskList,
+        loading,
     } = useLocalStorage('TASKS_V1', taskListExample);
 
     // States
@@ -24,7 +23,7 @@ export const AppProvider = (props) => {
     const [taskSearchList, setTaskSearchList] = React.useState(taskList);
     const [taskValue, setTaskValue] = React.useState('');
     const [taskEdit, setTaskEdit] = React.useState({id: -1, name: '', completed: false});
-    const [modal, setModal] = React.useState({isOpen: false, edit: false, add: false});   
+    const [modal, setModal] = React.useState({isOpen: false, edit: false, add: false});  
 
     // Events
     const onChangeSearchValue = ({target}) => {    
@@ -138,6 +137,7 @@ export const AppProvider = (props) => {
                 taskCompleted,
                 modal,
                 taskValue,
+                loading,
                 // Events           
                 onChangeSearchValue,
                 onChangeCompleted,

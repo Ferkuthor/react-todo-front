@@ -1,18 +1,18 @@
 import React from 'react'
 import { TaskItem } from './TaskItem'
-import { Grommet, Box, Button, Text } from 'grommet';
+import { Grommet, Box, Text, Spinner } from 'grommet';
 
 import { TaskContext } from '../../contexts/AppProvider'
 
 export const TaskContainer = (props) => {
 
-    const { taskSearchList, onChangeCompleted, onClickDelete, onClickEdit } = React.useContext(TaskContext);
+    const { taskSearchList, onChangeCompleted, onClickDelete, onClickEdit, loading } = React.useContext(TaskContext);
 
     return (
         <Grommet>
             <Box pad="medium" background="light-2" align="center" >
-                {
-                    taskSearchList.length > 0
+                {!loading
+                    ? taskSearchList.length > 0
                         ? taskSearchList.map((taskItem, index) => (
                             <TaskItem
                                 key={index}
@@ -25,6 +25,12 @@ export const TaskContainer = (props) => {
                             />
                         ))
                         : <Text> No hay tareas! </Text>
+                    : <Spinner
+                        border={[
+                            { side: 'all', color: 'transparent', size: 'medium' },
+                            { side: 'horizontal', color: 'brand', size: 'medium' },
+                        ]}
+                    />
                 }
             </Box>
         </Grommet>
