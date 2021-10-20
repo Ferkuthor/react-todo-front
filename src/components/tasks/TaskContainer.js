@@ -10,7 +10,7 @@ export const TaskContainer = (props) => {
 
     return (
         <Grommet>
-            <Box pad="medium" background="light-2" align="center" >
+            <Box pad="medium" background="light-2" align="center">
                 {!loading
                     ? taskSearchList.length > 0
                         ? taskSearchList.map((taskItem, index) => (
@@ -26,11 +26,11 @@ export const TaskContainer = (props) => {
                         ))
                         : <Text> No hay tareas! </Text>
                     : <Spinner
-                        border={[
-                            { side: 'all', color: 'transparent', size: 'medium' },
-                            { side: 'horizontal', color: 'brand', size: 'medium' },
-                        ]}
-                    />
+                    border={[
+                      { side: 'all', color: 'transparent', size: 'medium' },
+                      { side: 'horizontal', color: 'brand', size: 'medium' },
+                    ]}
+                  />
                 }
             </Box>
         </Grommet>

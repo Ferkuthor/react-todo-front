@@ -10,7 +10,7 @@ export const TaskSearch = (props) => {
 
     return (
         <Grommet>
-            <Box fill align="center" justify="start" >
+            <Box fill align="center" justify="start" pad="small">
                 <Box width="medium" gap="medium">
                     <TextInput
                         icon={<Search />}
